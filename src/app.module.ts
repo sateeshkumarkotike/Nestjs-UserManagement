@@ -19,8 +19,8 @@ import { AddressModule } from './address/address.module';
     S3Module.forRoot({
       config: {
         credentials: {
-          accessKeyId: 'AKIA2INXOM7RBWFYUL6V',
-          secretAccessKey: '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',
+          accessKeyId: process.env.ACCESS_KEY,
+          secretAccessKey: process.env.AKIA2INXOM7RBWFYUL6V
         },
         region: 'Global',
       },
