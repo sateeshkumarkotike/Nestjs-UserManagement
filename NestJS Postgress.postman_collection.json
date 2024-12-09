@@ -1,0 +1,853 @@
+{
+	"info": {
+		"_postman_id": "e77d4061-bc0d-4169-81cc-e258823c36a5",
+		"name": "NestJS Postgress",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7266961"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "sateesh",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "saisateesh2173@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Sateesh@217",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Downloads/sateeshKumar.PNG"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"saisateesh2172@gmail.com\",\r\n    \"password\":\"Sateesh@217\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InNhdGVlc2giLCJlbWFpbCI6InNhaXNhdGVlc2gyMTczQGdtYWlsLmNvbSIsImlhdCI6MTczMzY0MjY2NiwiZXhwIjoxNzMzNzI5MDY2fQ.5OJjVYF_-bdMxG8cvTo6TnjdaDrmrTATGQ453CgF6bY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InNhdGVlc2giLCJlbWFpbCI6InNhaXNhdGVlc2gyMTczQGdtYWlsLmNvbSIsImlhdCI6MTczMzY0MjY2NiwiZXhwIjoxNzMzNzI5MDY2fQ.5OJjVYF_-bdMxG8cvTo6TnjdaDrmrTATGQ453CgF6bY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/users/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InNhdGVlc2giLCJlbWFpbCI6InNhaXNhdGVlc2gyMTczQGdtYWlsLmNvbSIsImlhdCI6MTczMzY0MjY2NiwiZXhwIjoxNzMzNzI5MDY2fQ.5OJjVYF_-bdMxG8cvTo6TnjdaDrmrTATGQ453CgF6bY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Sateesh",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "sateesh@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Sateesh@217",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Downloads/sateeshKumar.PNG"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User By ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IlNhdGVlc2giLCJlbWFpbCI6InNhdGVlc2hAZ21haWwuY29tIiwiaWF0IjoxNzMzNjQ2ODMyLCJleHAiOjE3MzM3MzMyMzJ9.o9tiAPVYbYZ_tMcubIqc-11x6r4kvfxtkGcw4WOvVvc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"TV\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/categories/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzY2MzVjNjBhY2Y2ZGVhNTQxOGQ5OSIsIm5hbWUiOiInc2F0ZWVzaCIsImVtYWlsIjoic2Fpc2F0ZWVzaDIxN0BnbWFpbC5jb20iLCJpYXQiOjE3MTQ5MjgzMDAsImV4cCI6MTcxNTAxNDcwMH0.kHQND131j7R-PFlx7K8ubSMRWi0FmHfWQsMcIzj9Hdg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"TV\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/categories/66389e00614019d1da1b1b8c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"66389e00614019d1da1b1b8c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzY2MzVjNjBhY2Y2ZGVhNTQxOGQ5OSIsIm5hbWUiOiInc2F0ZWVzaCIsImVtYWlsIjoic2Fpc2F0ZWVzaDIxN0BnbWFpbC5jb20iLCJpYXQiOjE3MTQ5MjgzMDAsImV4cCI6MTcxNTAxNDcwMH0.kHQND131j7R-PFlx7K8ubSMRWi0FmHfWQsMcIzj9Hdg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/categories/66389e8d184fc5551843c0db",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"66389e8d184fc5551843c0db"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IlNhdGVlc2giLCJlbWFpbCI6InNhdGVlc2hAZ21haWwuY29tIiwiaWF0IjoxNzMzNjY5MjcwLCJleHAiOjE3MzM3NTU2NzB9.Zu6VRAfE_CGtuBCjHfiAbdVEIK4f-2-rpybd5jYPCw0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Samsung",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "brand",
+									"value": "android",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "inStock",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/D:/Downloads/m1.png",
+										"/D:/Downloads/m2.png",
+										"/D:/Downloads/m3.png",
+										"/D:/Downloads/m4.png"
+									]
+								},
+								{
+									"key": "description",
+									"value": "product description",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/products/?pagesize=20&page=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "pagesize",
+									"value": "20"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/products/category/2?pagesize=10&page=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"category",
+								"2"
+							],
+							"query": [
+								{
+									"key": "pagesize",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/products/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IidzYXRlZXNoIiwiZW1haWwiOiJzYWlzYXRlZXNoMjE3QGdtYWlsLmNvbSIsImlhdCI6MTcxNjI5OTI2NSwiZXhwIjoxNzE2Mzg1NjY1fQ.KMPvL_0Vzkh9xoDUDXlSf9nGDPtXrZKyHn83AvrfWrI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Apple iPhone 7 Plus 32 GB (Apple Türkiye Garantili)1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "6637843048c452d6fcef0d85",
+									"type": "text"
+								},
+								{
+									"key": "brand",
+									"value": "apple1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "42413.4998283996391",
+									"type": "text"
+								},
+								{
+									"key": "cpu",
+									"value": "1.3GHz Apple A61",
+									"type": "text"
+								},
+								{
+									"key": "camera",
+									"value": "8mp (3264x2448)1",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "124.4mm x 59.2mm x 8.97mm (4.9 x 2.33 x 0.351",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "132 grams (4.7 ounces) with battery1",
+									"type": "text"
+								},
+								{
+									"key": "display",
+									"value": "4.0 326 pixel density1",
+									"type": "text"
+								},
+								{
+									"key": "battery",
+									"value": "1480 mAh1",
+									"type": "text"
+								},
+								{
+									"key": "memory",
+									"value": "16GB, 32GB and RAM 1 GB1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!1 new text",
+									"type": "text"
+								},
+								{
+									"key": "inStock",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/D:/Downloads/m1.png",
+										"/D:/Downloads/m2.png",
+										"/D:/Downloads/m3.png",
+										"/D:/Downloads/m4.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IidzYXRlZXNoIiwiZW1haWwiOiJzYWlzYXRlZXNoMjE3QGdtYWlsLmNvbSIsImlhdCI6MTcxNjI5OTI2NSwiZXhwIjoxNzE2Mzg1NjY1fQ.KMPvL_0Vzkh9xoDUDXlSf9nGDPtXrZKyHn83AvrfWrI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/products/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Add Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzY2MzVjNjBhY2Y2ZGVhNTQxOGQ5OSIsIm5hbWUiOiJTYXRlZXNoIiwiZW1haWwiOiJzYWlzYXRlZXNoMjE3QGdtYWlsLmNvbSIsImlhdCI6MTcxNTE2OTAwNywiZXhwIjoxNzE1MjU1NDA3fQ.8OxNDcNiXAUmCT4zLVjZpw54AbSdm2MKreDwHC7rqyI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doorNoAndVillage\":\"room3,JC Layout,Ayyappa Nagar\",\r\n    \"district\":\"KR PURAM\",\r\n    \"state\":\"Karnataka\",\r\n    \"pincode\":516130,\r\n    \"landmark\":\"Devasandra Road,Near RR Temple\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/address",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzY2MzVjNjBhY2Y2ZGVhNTQxOGQ5OSIsIm5hbWUiOiJTYXRlZXNoIiwiZW1haWwiOiJzYWlzYXRlZXNoMjE3QGdtYWlsLmNvbSIsImlhdCI6MTcxNTE2OTAwNywiZXhwIjoxNzE1MjU1NDA3fQ.8OxNDcNiXAUmCT4zLVjZpw54AbSdm2MKreDwHC7rqyI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/address",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzY2MzVjNjBhY2Y2ZGVhNTQxOGQ5OSIsIm5hbWUiOiJTYXRlZXNoIiwiZW1haWwiOiJzYWlzYXRlZXNoMjE3QGdtYWlsLmNvbSIsImlhdCI6MTcxNTE2OTAwNywiZXhwIjoxNzE1MjU1NDA3fQ.8OxNDcNiXAUmCT4zLVjZpw54AbSdm2MKreDwHC7rqyI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/address/663b6781350b6bbe8cdb0662",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address",
+								"663b6781350b6bbe8cdb0662"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzY2MzVjNjBhY2Y2ZGVhNTQxOGQ5OSIsIm5hbWUiOiJTYXRlZXNoIiwiZW1haWwiOiJzYWlzYXRlZXNoMjE3QGdtYWlsLmNvbSIsImlhdCI6MTcxNTE2OTAwNywiZXhwIjoxNzE1MjU1NDA3fQ.8OxNDcNiXAUmCT4zLVjZpw54AbSdm2MKreDwHC7rqyI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doorNoAndVillage\":\"10/13,RR Street\",\r\n    \"district\":\"Kadapa\",\r\n    \"state\":\"Andhrapradesh\",\r\n    \"pincode\":\"516130\",\r\n    \"landmark\":\"Neaar Rayachoty Bustand\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/address/663b674d350b6bbe8cdb0660",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address",
+								"663b674d350b6bbe8cdb0660"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzY2MzVjNjBhY2Y2ZGVhNTQxOGQ5OSIsIm5hbWUiOiJTYXRlZXNoIiwiZW1haWwiOiJzYWlzYXRlZXNoMjE3QGdtYWlsLmNvbSIsImlhdCI6MTcxNTE2OTAwNywiZXhwIjoxNzE1MjU1NDA3fQ.8OxNDcNiXAUmCT4zLVjZpw54AbSdm2MKreDwHC7rqyI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"phone\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/address",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
