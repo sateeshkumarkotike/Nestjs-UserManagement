@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { RegisterUserDTO } from 'src/user/dtos/register-user.dto';
 import { LoginUserDTO } from 'src/user/dtos/login-user.dto';
 import * as jwt from 'jsonwebtoken';
+import { UpdateUserDTO } from 'src/user/dtos/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -101,6 +102,79 @@ export class UserService {
             user: checkUserExist
         }
     }
+
+
+    async getAllUsers():Promise<any>{
+        let users = await this.userModel.findAll({
+                        attributes: { exclude: ['password'] }, // Excluding password field from user attributes
+                    });
+        return users;
+    }
+
+
+    async getUserById(id:string):Promise<any>{
+        let user = await this.userModel.findOne(
+                { 
+                    where:{ id },
+                    attributes: { exclude: ['password'] }, // Excluding password field from user attributes
+                }
+            );
+        if(!user){
+            throw new NotFoundException('user not found');
+        }
+        return user;
+    }
+
+
+    async updateUserById(updateUserDTO:UpdateUserDTO,id:string,image: any):Promise<any>{
+        let { name, email , password } = updateUserDTO;
+        const { originalname, buffer } = image;
+        let user = await this.userModel.findOne({ where:{ id },attributes: { exclude: ['password'] }, });
+        if(!user){
+            throw new NotFoundException('user not found');
+        }
+
+         // convert to hashed password
+         let hashedPassword = password ? await this.hashPassword(password) : user.password;
+
+         await this.removeImageFromS3(user.image);
+
+         const key = `users/${image.originalname}-${Date.now()}`;
+         const imageObject = await this.uploadFileToS3(image, key);
+
+
+          // update 
+         const userToUpdate = await this.userModel.update(
+            {
+                name: name,
+                email: email, 
+                password: hashedPassword,
+                image: key,
+                location: imageObject.Location,
+            },
+            { 
+                where: { id } ,
+                returning: true,
+            }
+         );
+         // Fetch the updated user
+        const updatedUser = await this.userModel.findOne({ where: { id },attributes: { exclude: ['password']  }});
+        return updatedUser;
+    }
+
+    
+    async deleteUserById(id:string):Promise<any>{
+        let user = await this.userModel.findOne({ where:{ id }})
+        if(!user){
+            throw new NotFoundException('user not found');
+        }
+
+        await this.removeImageFromS3(user.image);
+
+        let deletedUser = await this.userModel.destroy({ where:{ id }, });
+        return deletedUser
+    }
+
 
 
 }

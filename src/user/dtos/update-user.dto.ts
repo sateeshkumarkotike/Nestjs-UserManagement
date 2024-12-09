@@ -20,7 +20,4 @@ export class UpdateUserDTO {
   password: string;
 
   image: any;
-
-  @Optional()
-  isAdmin:boolean;
 }
