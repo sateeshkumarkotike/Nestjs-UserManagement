@@ -16,8 +16,8 @@ import 'dotenv/config';
     S3Module.forRoot({
       config: {
         credentials: {
-          accessKeyId: 'AKIA2INXOM7RBWFYUL6V',
-          secretAccessKey: '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',
+          accessKeyId: '',
+          secretAccessKey: '',
         },
         region: 'Global',
       },
