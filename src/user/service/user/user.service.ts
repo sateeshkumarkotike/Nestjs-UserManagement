@@ -8,6 +8,7 @@ import { LoginUserDTO } from 'src/user/dtos/login-user.dto';
 import * as jwt from 'jsonwebtoken';
 import { UpdateUserDTO } from 'src/user/dtos/update-user.dto';
 import { Address } from 'src/address/models/address.model';
+import 'dotenv/config';
 
 @Injectable()
 export class UserService {
@@ -29,7 +30,7 @@ export class UserService {
 
     async uploadFileToS3(file: any, key: string): Promise<any> {
         const params: S3.PutObjectRequest = {
-            Bucket: 'sateeshbucketnestjsmysql',
+            Bucket: process.env.S3_BUKET_NAME,
             Key: key,
             Body: file.buffer,
             // ACL: 'public-read', // Adjust ACL as per your requirement
@@ -41,7 +42,7 @@ export class UserService {
 
     async removeImageFromS3(key: string): Promise<void> {
         const params: S3.DeleteObjectRequest = {
-            Bucket: 'sateeshbucketnestjsmysql',
+            Bucket: process.env.S3_BUKET_NAME,
             Key: key,
         };
         await this.s3.deleteObject(params).promise();
