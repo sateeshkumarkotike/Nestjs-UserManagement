@@ -1,4 +1,5 @@
 import { Column, Model, Table, HasMany,DataType } from 'sequelize-typescript';
+import { Address } from 'src/address/models/address.model';
 
 export interface UserInterface {
   email: string;
@@ -41,6 +42,9 @@ export class User extends Model implements UserInterface {
     defaultValue: UserRole.VIEWER,
   })
   role: UserRole;
+
+  @HasMany(() => Address)
+  addresses: Address[];
 
 }
 

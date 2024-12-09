@@ -12,6 +12,7 @@ import Pagination from 'src/utils/pagination';
 
 @Injectable()
 export class ProductService {
+    
     private readonly s3: S3;
 
     constructor(
@@ -103,7 +104,7 @@ export class ProductService {
                     model: this.categoryModel,
                     attributes: ['id','name']
                     // attributes: { exclude:['createdAt','updatedAt'] }
-                }
+                },
             ],
             offset: skip,
             limit: limit,
@@ -134,6 +135,12 @@ export class ProductService {
         const products = await this.productModel.findAll(
             {
                 where:{ categoryId:id },
+                // include:[
+                //     {
+                //         model:this.categoryModel,
+                //         attributes: ['id','name']
+                //     }
+                // ]
                 offset: skip,
                 limit: limit,
             }

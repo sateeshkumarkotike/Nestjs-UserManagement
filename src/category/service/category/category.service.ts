@@ -2,11 +2,12 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectModel } from '@nestjs/sequelize';
 import { CategoryDTO } from 'src/category/dtos/category.dto';
 import { Category } from 'src/category/models/category.model';
+import { Product } from 'src/product/models/product.model';
 
 @Injectable()
 export class CategoryService {
 
-    constructor(@InjectModel(Category) private readonly categoryModel: typeof Category) {
+    constructor(@InjectModel(Category) private readonly categoryModel: typeof Category,@InjectModel(Product) private readonly productModel: typeof Product) {
 
     }
 
@@ -22,14 +23,25 @@ export class CategoryService {
     }
 
     async getCategories():Promise<Category[]>{
-        let categories = await this.categoryModel.findAll({ });
+        let categories = await this.categoryModel.findAll({ 
+            include: [ 
+                {
+                    model: this.productModel,
+                }
+            ]
+        });
         return categories;
     }
 
     async getCategory(id:string):Promise<Category>{
         let category = await this.categoryModel.findOne(
             { 
-                where:{ id } 
+                where:{ id } ,
+                include: [ 
+                    {
+                        model: this.productModel,
+                    } 
+                ]
             }
         );
         if(!category){

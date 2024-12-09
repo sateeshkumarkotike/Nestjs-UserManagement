@@ -20,4 +20,6 @@ export class UpdateUserDTO {
   password: string;
 
   image: any;
+
+  role:any;
 }

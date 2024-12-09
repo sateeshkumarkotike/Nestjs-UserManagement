@@ -7,13 +7,14 @@ import { RegisterUserDTO } from 'src/user/dtos/register-user.dto';
 import { LoginUserDTO } from 'src/user/dtos/login-user.dto';
 import * as jwt from 'jsonwebtoken';
 import { UpdateUserDTO } from 'src/user/dtos/update-user.dto';
+import { Address } from 'src/address/models/address.model';
 
 @Injectable()
 export class UserService {
 
     private readonly s3: S3;
 
-    constructor(@InjectModel(User) private readonly userModel: typeof User) {
+    constructor(@InjectModel(User) private readonly userModel: typeof User,@InjectModel(Address) private readonly addressModel: typeof Address) {
         this.s3 = new S3();
     }
 
@@ -48,7 +49,7 @@ export class UserService {
 
     async registerUser(registerUserDTO:RegisterUserDTO,image: any):Promise<User>{
         const { name, email , password } = registerUserDTO;
-        const role = registerUserDTO.role  ? registerUserDTO.role : 'viewer';
+        const role = registerUserDTO.role ? registerUserDTO.role : 'viewer';
         const { originalname, buffer } = image;
 
         // check a user already exists
@@ -69,13 +70,12 @@ export class UserService {
             name,
             email,
             password:hashedPassword,
+            role,
             image: key,
             location: imageObject.Location,
-            role
         });
         return user;
     }
-    
 
     async  loginUser(loginUserDTO:LoginUserDTO):Promise<any>{
         const { email,password } = loginUserDTO;
@@ -106,6 +106,11 @@ export class UserService {
 
     async getAllUsers():Promise<any>{
         let users = await this.userModel.findAll({
+                        include: [
+                            { 
+                                model: this.addressModel,  
+                            }
+                        ],
                         attributes: { exclude: ['password'] }, // Excluding password field from user attributes
                     });
         return users;
@@ -116,6 +121,11 @@ export class UserService {
         let user = await this.userModel.findOne(
                 { 
                     where:{ id },
+                    include: [
+                        { 
+                            model: this.addressModel,  
+                        }
+                    ],
                     attributes: { exclude: ['password'] }, // Excluding password field from user attributes
                 }
             );
@@ -128,6 +138,8 @@ export class UserService {
 
     async updateUserById(updateUserDTO:UpdateUserDTO,id:string,image: any):Promise<any>{
         let { name, email , password } = updateUserDTO;
+        const role = updateUserDTO.role ;
+        
         const { originalname, buffer } = image;
         let user = await this.userModel.findOne({ where:{ id },attributes: { exclude: ['password'] }, });
         if(!user){
@@ -142,13 +154,13 @@ export class UserService {
          const key = `users/${image.originalname}-${Date.now()}`;
          const imageObject = await this.uploadFileToS3(image, key);
 
-
           // update 
          const userToUpdate = await this.userModel.update(
             {
                 name: name,
                 email: email, 
                 password: hashedPassword,
+                isAdmin: role ? role : user.role,
                 image: key,
                 location: imageObject.Location,
             },
@@ -174,7 +186,5 @@ export class UserService {
         let deletedUser = await this.userModel.destroy({ where:{ id }, });
         return deletedUser
     }
-
-
 
 }
