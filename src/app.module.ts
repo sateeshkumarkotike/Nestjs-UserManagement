@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { ConfigModule } from '@nestjs/config';
 import { S3Module } from 'nestjs-s3';
 import { UserModule } from './user/user.module';
+import { CategoryModule } from './category/category.module';
 import 'dotenv/config';
 
 @Module({
@@ -25,6 +26,7 @@ import 'dotenv/config';
     DatabaseModule, 
     SharedModule,
     UserModule,
+    CategoryModule,
     
   ],
   controllers: [AppController, UserController],
