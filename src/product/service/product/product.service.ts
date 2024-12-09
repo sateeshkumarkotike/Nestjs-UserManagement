@@ -9,6 +9,7 @@ import { UpdateProductDTO } from 'src/product/dtos/update-product.dto';
 import { Product } from 'src/product/models/product.model';
 import { User } from 'src/user/models/user.model';
 import Pagination from 'src/utils/pagination';
+import 'dotenv/config';
 
 @Injectable()
 export class ProductService {
@@ -25,7 +26,7 @@ export class ProductService {
 
     async uploadFileToS3(file: any, key: string): Promise<any> {
         const params: S3.PutObjectRequest = {
-            Bucket: 'sateeshbucketnestjsmysql',
+            Bucket: process.env.S3_BUKET_NAME,
             Key: key,
             Body: file.buffer,
             // ACL: 'public-read', // Adjust ACL as per your requirement
@@ -39,7 +40,7 @@ export class ProductService {
         // Iterate over each image key and delete from S3 bucket
         const objects = keys.map(key => ({ Key: key }));
         const params: S3.DeleteObjectsRequest = {
-        Bucket: 'sateeshbucketnestjsmysql',
+        Bucket: process.env.S3_BUKET_NAME,
             Delete: {
                 Objects: objects,
             },
