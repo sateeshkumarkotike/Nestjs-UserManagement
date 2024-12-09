@@ -20,7 +20,7 @@ import { AddressModule } from './address/address.module';
       config: {
         credentials: {
           accessKeyId: process.env.ACCESS_KEY,
-          secretAccessKey: process.env.AKIA2INXOM7RBWFYUL6V
+          secretAccessKey: process.env.SECRET_KEY
         },
         region: 'Global',
       },
